@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.DataAccess;
 
@@ -31,11 +32,13 @@ public class Welcome extends HttpServlet {
 
 		// userCheckメソッドを実行し、画面遷移
 		try {
-			if(da.userCheck(name, password)){
+			if (da.userCheck(name, password)) {
 				req.setAttribute("name", name);
+				HttpSession session = req.getSession();
+				session.setAttribute("id", da.getId());
 				RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/welcome.jsp");
 				rd.forward(req, resp);
-			}else{
+			} else {
 				req.setAttribute("message", "ユーザー名またはパスワードが違います");
 				RequestDispatcher rd = req.getRequestDispatcher("/index.jsp");
 				rd.forward(req, resp);
