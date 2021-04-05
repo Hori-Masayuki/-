@@ -13,6 +13,15 @@ public class DataAccess {
 
 	// DataSourceを保持する変数
 	private static DataSource ds = null;
+	private Integer id;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	// lookupで使用するJNDI参照名
 	private static final String JNDI_NAME = "java:comp/env/jdbc/system";
@@ -28,7 +37,7 @@ public class DataAccess {
 		return ds;
 	}
 
-//	ログイン可能か確認するメソッド
+	// ログイン可能か確認するメソッド
 	public boolean userCheck(String name, String password) throws SQLException {
 
 		// Connection,PreparedStatement,ResultSet型変数の宣言
@@ -64,7 +73,8 @@ public class DataAccess {
 				// 検索結果が無かった場合はfalseを返す
 				return false;
 			}
-			// パスワードと検索結果が一致した場合trueを返す
+			// パスワードと検索結果が一致した場合trueを返し、setIdメソッドを呼び出す
+			setId(rs.getInt("id"));
 			return true;
 
 		} catch (Exception e) {
@@ -83,9 +93,7 @@ public class DataAccess {
 		}
 	}
 
-
-
-//	データを登録するメソッド
+	// データを登録するメソッド
 	public void registUser(User user) throws SQLException {
 
 		// Connection,PreparedStatement,ResultSet型変数の宣言
@@ -145,4 +153,5 @@ public class DataAccess {
 			}
 		}
 	}
+
 }
