@@ -1,24 +1,26 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-<meta charset="UTF-8">
 <title>生徒管理システム</title>
-<link rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-	<h1>生徒管理システム</h1>
-	<p>${message }</p>
-	<p>ログイン画面</p>
-	<form action="login" method="POST">
-		<p>お名前</p>
-		<input type="text" name="name"><br>
-		<p>パスワード</p>
-		<input type="password" name="password">
-		<input type="submit" value="ログイン">
-	</form>
-	<p>
-		新規登録は<a href="regist.jsp">こちら</a>
-	</p>
+	<div class="bodySignIn">
+		<p>${message }</p>
+		<h1 class="textSignIn">サインイン</h1>
+		<div class="screenSignIn">
+			<form action="login" method="POST">
+				<p class="editInput">ユーザー名</p>
+				<input type="text" name="name">
+				<p class="editInput">パスワード</p>
+				<input type="password" name="password"><br> <input
+					type="submit" value="サインイン" class="btnSignIn">
+			</form>
+		</div>
+		<p>
+			<a href="regist.jsp" class="textSignUp">アカウントを作成</a>
+		</p>
+	</div>
 </body>
 </html>
