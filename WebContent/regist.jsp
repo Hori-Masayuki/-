@@ -3,25 +3,25 @@
 <html lang="ja">
 <head>
 <title>生徒管理システム</title>
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/styles.css">
 </head>
 <body>
-	<div class="bodySignUp">
+	<div class="regist-body">
 		<p>${message }</p>
-		<h1 class="textSignUp">サインアップ</h1>
-		<div class="screenSignUp">
+		<h1 class="regist-signUp">サインアップ</h1>
+		<div class="regist-signUp-screen">
 			<form action="regist" method="POST">
-				<p class="editInput">ユーザー名</p>
-				<input type="text" name="name"><br>
-				<p class="editInput">メールアドレス</p>
-				<input type="text" name="email">
-				<p class="editInput">パスワード</p>
-				<input type="password" name="password"><br> <input
-					type="submit" value="サインアップ" class="btnSignUp">
+				<p class="regist-text">ユーザー名</p>
+				<input type="text" name="name" class="regist-input"><br>
+				<p class="regist-text">メールアドレス</p>
+				<input type="email" name="email" class="regist-input">
+				<p class="regist-text">パスワード</p>
+				<input type="password" name="password" class="regist-input"><br> <input
+					type="submit" value="サインアップ" class="regist-btn">
 			</form>
 		</div>
 		<p>
-			<a href="index.jsp" class="textSignIn">ログイン画面へ</a>
+			<a href="index.jsp" class="regist-signIn">ログイン画面へ</a>
 		</p>
 	</div>
 </body>

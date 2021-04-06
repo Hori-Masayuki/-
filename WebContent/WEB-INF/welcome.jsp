@@ -7,24 +7,23 @@
 	href="${pageContext.request.contextPath }/css/styles.css">
 </head>
 <body>
-	<div class="bodyHome">
-		<p>ようこそ${name }さん</p>
-		<p>あなたのIDは${id }です</p>
+	<div class="welcome-body">
+		<p>${message }</p>
 		<form action="insertStudent" method="POST">
-			<input type="hidden" name="id" value="${id }"> <input
-				type="submit" value="新規生徒登録" class="btnLink">
+			<input type="hidden" name="user_id" value="${user_id }">
+			<input type="submit" value="新規生徒登録" class="welcome-link">
 		</form>
 		<form action="selectStudent" method="POST">
-			<input type="hidden" name="id" value="${id }"> <input
-				type="submit" value="生徒一覧" class="btnLink">
+			<input type="hidden" name="user_id" value="${user_id }">
+			<input type="submit" value="生徒一覧" class="welcome-link">
 		</form>
 		<form action="insertResult" method="POST">
-			<input type="hidden" name="id" value="${id }"> <input
-				type="submit" value="新規成績入力" class="btnLink">
+			<input type="hidden" name="user_id" value="${user_id }">
+			<input type="submit" value="新規成績入力" class="welcome-link">
 		</form>
 		<form action="selectResult" method="POST">
-			<input type="hidden" name="id" value="${id }"> <input
-				type="submit" value="成績一覧" class="btnLink">
+			<input type="hidden" name="user_id" value="${user_id }">
+			<input type="submit" value="成績一覧" class="welcome-link">
 		</form>
 	</div>
 </body>
