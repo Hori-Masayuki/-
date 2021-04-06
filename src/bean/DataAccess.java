@@ -13,14 +13,14 @@ public class DataAccess {
 
 	// DataSourceを保持する変数
 	private static DataSource ds = null;
-	private Integer id;
+	private Integer user_id;
 
-	public Integer getId() {
-		return id;
+	public Integer getUser_id() {
+		return user_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setUser_id(Integer user_id) {
+		this.user_id = user_id;
 	}
 
 	// lookupで使用するJNDI参照名
@@ -74,7 +74,7 @@ public class DataAccess {
 				return false;
 			}
 			// パスワードと検索結果が一致した場合trueを返し、setIdメソッドを呼び出す
-			setId(rs.getInt("id"));
+			setUser_id(rs.getInt("id"));
 			return true;
 
 		} catch (Exception e) {
@@ -93,7 +93,7 @@ public class DataAccess {
 		}
 	}
 
-	// データを登録するメソッド
+	// ユーザーデータを登録するメソッド
 	public void registUser(User user) throws SQLException {
 
 		// Connection,PreparedStatement,ResultSet型変数の宣言
@@ -150,6 +150,54 @@ public class DataAccess {
 			}
 			if (rs != null) {
 				rs.close();
+			}
+		}
+	}
+
+	// 生徒データを登録するメソッド
+	public void registStudent(Student student) throws SQLException {
+
+		// Connection,PreparedStatement,ResultSet型変数の宣言
+		Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+			// 生徒データ登録用のSQL文
+			String sql = "INSERT INTO student (user_id,regist_date,name,ruby,birthday,sex,zip,address1,address2,tel,email,school,grade) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?);";
+
+			// Connectionオブジェクトの取得
+			conn = getDataSource().getConnection();
+
+			// PreparedStatementオブジェクトの取得
+			ps = conn.prepareStatement(sql);
+
+			// パラメータ設定
+			ps.setInt(1, student.getUser_id());
+			ps.setString(2, student.getRegist_date());
+			ps.setString(3, student.getName());
+			ps.setString(4, student.getRuby());
+			ps.setString(5, student.getBirthday());
+			ps.setString(6, student.getSex());
+			ps.setInt(7, student.getZip());
+			ps.setString(8, student.getAddress1());
+			ps.setString(9, student.getAddress2());
+			ps.setString(10, student.getTel());
+			ps.setString(11, student.getEmail());
+			ps.setString(12, student.getSchool());
+			ps.setString(13, student.getGrade());
+
+			// データ登録用のSQL文の実行
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			throw new SQLException(e);
+		} finally {
+			// クローズ処理
+			if (conn != null) {
+				conn.close();
+			}
+			if (ps != null) {
+				ps.close();
 			}
 		}
 	}
