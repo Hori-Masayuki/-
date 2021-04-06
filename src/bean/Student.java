@@ -11,7 +11,7 @@ public class Student implements Serializable {
 	private String ruby;
 	private String birthday;
 	private String sex;
-	private String zip;
+	private Integer zip;
 	private String address1;
 	private String address2;
 	private String tel;
@@ -68,11 +68,11 @@ public class Student implements Serializable {
 		this.sex = sex;
 	}
 
-	public String getZip() {
+	public Integer getZip() {
 		return zip;
 	}
 
-	public void setZip(String zip) {
+	public void setZip(Integer zip) {
 		this.zip = zip;
 	}
 
