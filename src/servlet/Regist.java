@@ -66,7 +66,8 @@ public class Regist extends HttpServlet {
 			req.setAttribute("message", "登録が完了しました");
 			RequestDispatcher rd = req.getRequestDispatcher("/index.jsp");
 			rd.forward(req, resp);
-		}catch(Exception e){
+		} catch (Exception e) {
+			// 新規登録画面へ遷移
 			req.setAttribute("message", "エラーが発生しました");
 			req.getRequestDispatcher("/regist.jsp").forward(req, resp);
 		}
