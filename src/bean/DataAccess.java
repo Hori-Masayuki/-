@@ -204,7 +204,8 @@ public class DataAccess {
 		}
 	}
 
-	public ArrayList<Student> selectStudent(String user_id) throws SQLException {
+	// user_idから生徒一覧を取得できるメソッド
+	public ArrayList<Student> selectAllStudents(String user_id) throws SQLException {
 
 		// Connection,PreparedStatement,ResultSet型変数の宣言
 		Connection conn = null;
@@ -255,4 +256,148 @@ public class DataAccess {
 		}
 	}
 
+	// student_idからstudent情報を取得するメソッド
+	public Student selectStudent(String student_id) throws SQLException {
+
+		// Connection,PreparedStatement,ResultSet型変数の宣言
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		// 返す用のStudentを生成
+		Student student = new Student();
+
+		try {
+			// データ取得用SQL文
+			String sql = "SELECT * FROM student WHERE id=?;";
+
+			// DataSourceの取得
+			conn = getDataSource().getConnection();
+
+			// PreparedStatementオブジェクトの生成
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, Integer.parseInt(student_id));
+
+			// SQL文の実行
+			rs = ps.executeQuery();
+
+			// 検索結果からstudentを取得
+			if (rs.next()) {
+				student.setId(rs.getInt("id"));
+				student.setUser_id(rs.getInt("user_id"));
+				student.setZip(rs.getInt("zip"));
+				student.setRegist_date(rs.getString("regist_date"));
+				student.setName(rs.getString("name"));
+				student.setRuby(rs.getString("ruby"));
+				student.setBirthday(rs.getString("birthday"));
+				student.setSex(rs.getString("sex"));
+				student.setAddress1(rs.getString("address1"));
+				student.setAddress2(rs.getString("address2"));
+				student.setTel(rs.getString("tel"));
+				student.setEmail(rs.getString("email"));
+				student.setSchool(rs.getString("school"));
+				student.setGrade(rs.getString("grade"));
+			}
+			return student;
+
+		} catch (Exception e) {
+			throw new SQLException(e);
+		} finally {
+			// クローズ処理
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (conn != null) {
+				conn.close();
+			}
+		}
+	}
+
+	// student_idからstudent情報を削除するメソッド
+	public void deleteStudent(String student_id) throws SQLException {
+
+		// Connection,PreparedStatement,ResultSet型変数の宣言
+		Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+			// 生徒データ削除用のSQL文
+			String sql = "DELETE FROM student WHERE id=?;";
+
+			// Connectionオブジェクトの取得
+			conn = getDataSource().getConnection();
+
+			// PreparedStatementオブジェクトの取得
+			ps = conn.prepareStatement(sql);
+
+			// パラメータ設定
+			ps.setInt(1, Integer.parseInt(student_id));
+
+			// データ削除用のSQL文の実行
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			throw new SQLException(e);
+		} finally {
+			// クローズ処理
+			if (conn != null) {
+				conn.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+		}
+	}
+
+	// student_idからstudent情報を更新するメソッド
+	public void updateStudent(Student student) throws SQLException {
+
+		// Connection,PreparedStatement,ResultSet型変数の宣言
+		Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+			// 生徒データ登録用のSQL文
+			String sql = "UPDATE student SET user_id=?,regist_date=?,name=?,ruby=?,birthday=?,sex=?,zip=?,address1=?,address2=?,tel=?,email=?,school=?,grade=? WHERE id=?;";
+
+			// Connectionオブジェクトの取得
+			conn = getDataSource().getConnection();
+
+			// PreparedStatementオブジェクトの取得
+			ps = conn.prepareStatement(sql);
+
+			// パラメータ設定
+			ps.setInt(1, student.getUser_id());
+			ps.setString(2, student.getRegist_date());
+			ps.setString(3, student.getName());
+			ps.setString(4, student.getRuby());
+			ps.setString(5, student.getBirthday());
+			ps.setString(6, student.getSex());
+			ps.setInt(7, student.getZip());
+			ps.setString(8, student.getAddress1());
+			ps.setString(9, student.getAddress2());
+			ps.setString(10, student.getTel());
+			ps.setString(11, student.getEmail());
+			ps.setString(12, student.getSchool());
+			ps.setString(13, student.getGrade());
+			ps.setInt(14, student.getId());
+
+			// データ登録用のSQL文の実行
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			throw new SQLException(e);
+		} finally {
+			// クローズ処理
+			if (conn != null) {
+				conn.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+		}
+	}
 }
