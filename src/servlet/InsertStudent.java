@@ -17,12 +17,10 @@ public class InsertStudent extends HttpServlet {
 
 		// 文字コードの設定
 		req.setCharacterEncoding("utf-8");
-
-		// userIdの取得
 		String user_id = req.getParameter("user_id");
-		req.setAttribute("user_id", user_id);
 
 		// insertStudent.jspに画面遷移
+		req.setAttribute("user_id", user_id);
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/insertStudent.jsp");
 		rd.forward(req, resp);
 	}

@@ -30,12 +30,12 @@ public class SelectStudent extends HttpServlet {
 			// DataAccessオブジェクトを生成
 			DataAccess da = new DataAccess();
 
-			// DataAccessのselectStudentメソッドを実行し、studentListを作成
-			ArrayList<Student> studentList = da.selectStudent(user_id);
+			// DataAccessのselectAllStudentsメソッドを実行し、studentListを作成
+			ArrayList<Student> studentList = da.selectAllStudents(user_id);
 
 			// user_idとstudentListをスコープに渡し、selectStudent.jspに画面遷移
-			req.setAttribute("user_id", user_id);
 			req.setAttribute("studentList", studentList);
+			req.setAttribute("user_id", user_id);
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/selectStudent.jsp");
 			rd.forward(req, resp);
 		} catch (SQLException e) {
