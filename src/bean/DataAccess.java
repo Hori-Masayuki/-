@@ -400,4 +400,114 @@ public class DataAccess {
 			}
 		}
 	}
+
+	// 成績を保存するメソッド
+	public void insertResult(Result result) throws SQLException {
+
+		// Connection,PreparedStatement,ResultSet型変数の宣言
+		Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+			// 成績保存用のSQL文
+			String sql = "INSERT INTO result (student_id,semester,test_date,test_name,english,math,japanese,science,society,music,tech_home,physical,art) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?);";
+
+			// Connectionオブジェクトの取得
+			conn = getDataSource().getConnection();
+
+			// 成績保存用のPreparedStatementオブジェクトの取得
+			ps = conn.prepareStatement(sql);
+
+			// パラメータ設定
+			ps.setInt(1, result.getStudent_id());
+			ps.setString(2, result.getSemester());
+			ps.setString(3, result.getTest_date());
+			ps.setString(4, result.getTest_name());
+			ps.setInt(5, result.getEnglish());
+			ps.setInt(6, result.getMath());
+			ps.setInt(7, result.getJapanese());
+			ps.setInt(8, result.getScience());
+			ps.setInt(9, result.getSociety());
+			ps.setInt(10, result.getMusic());
+			ps.setInt(11, result.getTech_home());
+			ps.setInt(12, result.getPhysical());
+			ps.setInt(13, result.getArt());
+
+			// 成績保存用のSQL文の実行
+			ps.executeUpdate();
+		} catch (Exception e) {
+			throw new SQLException(e);
+		} finally {
+			// クローズ処理
+			if (conn != null) {
+				conn.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+		}
+	}
+
+	// student_idから成績データをすべて取得するメソッド
+	public ArrayList<Result> selectAllResult(String student_id) throws SQLException {
+
+		// Connection,PreparedStatement,ResultSet型変数の宣言
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		// 返す用のArryaListを生成
+		ArrayList<Result> resultList = new ArrayList<Result>();
+
+		try {
+			// データ取得用SQL文
+			String sql = "SELECT * FROM result WHERE student_id=? ORDER BY test_date;";
+
+			// DataSourceの取得
+			conn = getDataSource().getConnection();
+
+			// PreparedStatementオブジェクトの生成
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, Integer.parseInt(student_id));
+
+			// SQL文の実行
+			rs = ps.executeQuery();
+
+			// 検索結果からresultを取得
+			while (rs.next()) {
+				Result result = new Result();
+				result.setStudent_id(rs.getInt("student_id"));
+				result.setSemester(rs.getString("semester"));
+				result.setTest_date(rs.getString("test_date"));
+				result.setTest_name(rs.getString("test_name"));
+				result.setEnglish(rs.getInt("english"));
+				result.setMath(rs.getInt("math"));
+				result.setJapanese(rs.getInt("japanese"));
+				result.setScience(rs.getInt("science"));
+				result.setSociety(rs.getInt("society"));
+				result.setMusic(rs.getInt("music"));
+				result.setTech_home(rs.getInt("tech_home"));
+				result.setPhysical(rs.getInt("physical"));
+				result.setArt(rs.getInt("art"));
+
+				resultList.add(result);
+			}
+			return resultList;
+
+		} catch (Exception e) {
+			throw new SQLException(e);
+		} finally {
+			// クローズ処理
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (conn != null) {
+				conn.close();
+			}
+		}
+
+	}
 }
