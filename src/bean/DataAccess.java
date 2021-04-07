@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -15,6 +16,7 @@ public class DataAccess {
 	private static DataSource ds = null;
 	private Integer user_id;
 
+	// getter,setterメソッド
 	public Integer getUser_id() {
 		return user_id;
 	}
@@ -198,6 +200,57 @@ public class DataAccess {
 			}
 			if (ps != null) {
 				ps.close();
+			}
+		}
+	}
+
+	public ArrayList<Student> selectStudent(String user_id) throws SQLException {
+
+		// Connection,PreparedStatement,ResultSet型変数の宣言
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		// 返す用のArryaListを生成
+		ArrayList<Student> studentList = new ArrayList<Student>();
+
+		try {
+			// データ取得用SQL文
+			String sql = "SELECT id,name,grade FROM student WHERE user_id=? ORDER BY grade;";
+
+			// DataSourceの取得
+			conn = getDataSource().getConnection();
+
+			// PreparedStatementオブジェクトの生成
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, Integer.parseInt(user_id));
+
+			// SQL文の実行
+			rs = ps.executeQuery();
+
+			// 検索結果からstudentを取得
+			while (rs.next()) {
+				Student student = new Student();
+				student.setId(rs.getInt("id"));
+				student.setName(rs.getString("name"));
+				student.setGrade(rs.getString("grade"));
+
+				studentList.add(student);
+			}
+			return studentList;
+
+		} catch (Exception e) {
+			throw new SQLException(e);
+		} finally {
+			// クローズ処理
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (conn != null) {
+				conn.close();
 			}
 		}
 	}
