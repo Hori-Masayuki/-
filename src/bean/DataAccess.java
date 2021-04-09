@@ -476,6 +476,7 @@ public class DataAccess {
 			// 検索結果からresultを取得
 			while (rs.next()) {
 				Result result = new Result();
+				result.setId(rs.getInt("id"));
 				result.setStudent_id(rs.getInt("student_id"));
 				result.setSemester(rs.getString("semester"));
 				result.setTest_date(rs.getString("test_date"));
@@ -508,6 +509,41 @@ public class DataAccess {
 				conn.close();
 			}
 		}
+	}
 
+	// result_idから成績データを削除するメソッド
+	public void deleteResult(String result_id) throws SQLException {
+
+		// Connection,PreparedStatement,ResultSet型変数の宣言
+		Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+			// 成績削除用のSQL文
+			String sql = "DELETE FROM result WHERE id=?;";
+
+			// Connectionオブジェクトの取得
+			conn = getDataSource().getConnection();
+
+			// PreparedStatementオブジェクトの取得
+			ps = conn.prepareStatement(sql);
+
+			// パラメータ設定
+			ps.setInt(1, Integer.parseInt(result_id));
+
+			// データ削除用のSQL文の実行
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			throw new SQLException(e);
+		} finally {
+			// クローズ処理
+			if (conn != null) {
+				conn.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+		}
 	}
 }
