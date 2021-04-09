@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.DataAccess;
 
-@WebServlet(urlPatterns = "deleteResult")
+@WebServlet(urlPatterns = "/deleteResult")
 public class DeleteResult extends HttpServlet {
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -32,13 +33,13 @@ public class DeleteResult extends HttpServlet {
 			da.deleteResult(result_id);
 
 			// welcome.jspに画面遷移
-			req.setAttribute("user_id", user_id);
 			req.setAttribute("message", "削除しました");
+			req.setAttribute("user_id", user_id);
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/welcome.jsp");
 			rd.forward(req, resp);
 		} catch (Exception e) {
-			req.setAttribute("user_id", user_id);
 			req.setAttribute("message", "エラーが発生しました");
+			req.setAttribute("user_id", user_id);
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/welcome.jsp");
 			rd.forward(req, resp);
 		}
