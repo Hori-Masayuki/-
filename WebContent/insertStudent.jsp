@@ -11,7 +11,6 @@
 		<h1 class="insertStudent-title">新規生徒登録</h1>
 		<p>${message }</p>
 		<form action="registStudent" method="POST">
-			<input type="hidden" name="user_id" value="${user_id }">
 
 			<div class="insertStudent-date">
 				<p class="insertStudent-text">登録日</p>

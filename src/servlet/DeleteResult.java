@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.DataAccess;
 
-@WebServlet(urlPatterns = "deleteResult")
+@WebServlet(urlPatterns = "/deleteResult")
 public class DeleteResult extends HttpServlet {
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -20,7 +21,6 @@ public class DeleteResult extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 
 		// result_idを取得
-		String user_id = req.getParameter("user_id");
 		String result_id = req.getParameter("result_id");
 
 		try {
@@ -32,12 +32,10 @@ public class DeleteResult extends HttpServlet {
 			da.deleteResult(result_id);
 
 			// welcome.jspに画面遷移
-			req.setAttribute("user_id", user_id);
 			req.setAttribute("message", "削除しました");
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/welcome.jsp");
 			rd.forward(req, resp);
-		} catch (Exception e) {
-			req.setAttribute("user_id", user_id);
+		}catch (Exception e) {
 			req.setAttribute("message", "エラーが発生しました");
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/welcome.jsp");
 			rd.forward(req, resp);

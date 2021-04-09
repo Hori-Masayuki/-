@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.DataAccess;
 import bean.Student;
@@ -24,7 +25,8 @@ public class SelectStudent extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 
 		// user_idの取得
-		String user_id = req.getParameter("user_id");
+		HttpSession session = req.getSession();
+		String user_id = (String) session.getAttribute("user_id");
 		try {
 
 			// DataAccessオブジェクトを生成
@@ -33,15 +35,13 @@ public class SelectStudent extends HttpServlet {
 			// DataAccessのselectAllStudentsメソッドを実行し、studentListを作成
 			ArrayList<Student> studentList = da.selectAllStudents(user_id);
 
-			// user_idとstudentListをスコープに渡し、selectStudent.jspに画面遷移
+			// studentListをスコープに渡し、selectStudent.jspに画面遷移
 			req.setAttribute("studentList", studentList);
-			req.setAttribute("user_id", user_id);
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/selectStudent.jsp");
 			rd.forward(req, resp);
 		} catch (SQLException e) {
-//			エラー処理
+			// エラー処理
 			req.setAttribute("message", "エラーが発生しました");
-			req.setAttribute("user_id", user_id);
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/welcome.jsp");
 			rd.forward(req, resp);
 		}

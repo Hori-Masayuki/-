@@ -12,7 +12,6 @@
 		<h1 class="selectResult-title">生徒一覧</h1>
 		<c:forEach var="student" items="${studentList }">
 			<form action="updateResult" method="POST">
-				<input type="hidden" name="user_id" value="${user_id }">
 				<input type="hidden" name="student_id" value="${student.id}">
 				<input type="hidden" name="student_name" value="${student.name}">
 				<input type="submit" value="${student.grade}:${student.name}" class="selectResult-submit">

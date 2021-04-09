@@ -11,8 +11,7 @@
 		<h1 class="updateStudent-title">生徒情報更新</h1>
 		<p>${message }</p>
 		<form action="updateRegistStudent" method="POST">
-			<input type="hidden" name="user_id" value="${user_id }"> <input
-				type="hidden" name="student_id" value="${student.id }">
+			<input type="hidden" name="student_id" value="${student.id }">
 
 			<div class="updateStudent-date">
 				<p class="updateStudent-text">登録日</p>
