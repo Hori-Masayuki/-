@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Result implements Serializable {
 
 	// Resultの情報をフィールドに定義
+	private Integer id;
 	private Integer student_id;
 	private String semester;
 	private String test_date;
@@ -20,6 +21,14 @@ public class Result implements Serializable {
 	private Integer art;
 
 	// getter,setterメソッド
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public Integer getStudent_id() {
 		return student_id;
 	}
