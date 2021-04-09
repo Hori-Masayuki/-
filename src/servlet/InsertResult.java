@@ -42,6 +42,7 @@ public class InsertResult extends HttpServlet {
 			req.setAttribute("user_id", user_id);
 			req.setAttribute("message", "エラーが発生しました");
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/welcome.jsp");
+			rd.forward(req, resp);
 		}
 	}
 }
