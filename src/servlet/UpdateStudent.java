@@ -23,6 +23,7 @@ public class UpdateStudent extends HttpServlet {
 
 		// student_idを取得
 		String student_id = req.getParameter("student_id");
+		String user_id = req.getParameter("user_id");
 
 		try {
 
@@ -34,11 +35,13 @@ public class UpdateStudent extends HttpServlet {
 
 			// student情報をスコープに渡し、updateStudent.jspに画面遷移
 			req.setAttribute("student", student);
+			req.setAttribute("user_id", user_id);
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/updateStudent.jsp");
 			rd.forward(req, resp);
 
 		} catch (Exception e) {
 			req.setAttribute("message", "エラーが発生しました");
+			req.setAttribute("user_id", user_id);
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/welcome.jsp");
 			rd.forward(req, resp);
 		}

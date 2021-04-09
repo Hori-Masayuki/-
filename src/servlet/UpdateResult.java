@@ -22,7 +22,8 @@ public class UpdateResult extends HttpServlet {
 		// 文字コードの設定
 		req.setCharacterEncoding("utf-8");
 
-		// student_idの取得
+		// user_idとstudent_idの取得
+		String user_id = req.getParameter("user_id");
 		String student_id = req.getParameter("student_id");
 		String student_name = req.getParameter("student_name");
 
@@ -35,11 +36,14 @@ public class UpdateResult extends HttpServlet {
 			ArrayList<Result> resultList = da.selectAllResult(student_id);
 
 			// resultListをスコープに渡し、画面遷移
+			req.setAttribute("user_id", user_id);
 			req.setAttribute("resultList", resultList);
 			req.setAttribute("student_name", student_name);
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/updateResult.jsp");
 			rd.forward(req, resp);
 		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("user_id", user_id);
 			req.setAttribute("message", "エラーが発生しました");
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/welcome.jsp");
 			rd.forward(req, resp);

@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import bean.DataAccess;
 import bean.Student;
@@ -22,11 +21,8 @@ public class UpdateRegistStudent extends HttpServlet {
 		// 文字コードの設定
 		req.setCharacterEncoding("utf-8");
 
-		// user_idを取得
-		HttpSession session = req.getSession();
-		String user_id = (String) session.getAttribute("user_id");
-
 		// 入力された値を取得
+		String user_id = req.getParameter("user_id");
 		String student_id = req.getParameter("student_id");
 		String date = req.getParameter("date");
 		String name = req.getParameter("name");
@@ -42,15 +38,16 @@ public class UpdateRegistStudent extends HttpServlet {
 		String grade = req.getParameter("grade");
 
 		try {
-			// DataAccessオブジェクトを生成
+//			DataAccessオブジェクトを生成
 			DataAccess da = new DataAccess();
 
-			// DataAccessのselectStudentメソッドを実行
+//			DataAccessのselectStudentメソッドを実行
 			Student student = da.selectStudent(student_id);
 
 			// 入力された値を確認
 			if (date == null || date.length() < 1) {
 				req.setAttribute("message", "登録日を入力してください");
+				req.setAttribute("user_id", user_id);
 				req.setAttribute("student", student);
 				RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/updateStudent.jsp");
 				rd.forward(req, resp);
@@ -58,6 +55,7 @@ public class UpdateRegistStudent extends HttpServlet {
 			}
 			if (name == null || name.length() < 1) {
 				req.setAttribute("message", "名前を入力してください");
+				req.setAttribute("user_id", user_id);
 				req.setAttribute("student", student);
 				RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/updateStudent.jsp");
 				rd.forward(req, resp);
@@ -65,6 +63,7 @@ public class UpdateRegistStudent extends HttpServlet {
 			}
 			if (ruby == null || ruby.length() < 1) {
 				req.setAttribute("message", "ふりがなを入力してください");
+				req.setAttribute("user_id", user_id);
 				req.setAttribute("student", student);
 				RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/updateStudent.jsp");
 				rd.forward(req, resp);
@@ -97,11 +96,13 @@ public class UpdateRegistStudent extends HttpServlet {
 
 			// welcome.jspに画面遷移
 			req.setAttribute("message", "更新が完了しました");
+			req.setAttribute("user_id", user_id);
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/welcome.jsp");
 			rd.forward(req, resp);
 		} catch (Exception e) {
 			// welcome.jspに画面遷移
 			req.setAttribute("message", "エラーが発生しました");
+			req.setAttribute("user_id", user_id);
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/welcome.jsp");
 			rd.forward(req, resp);
 		}

@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import bean.DataAccess;
 import bean.Student;
@@ -22,9 +21,7 @@ public class RegistStudent extends HttpServlet {
 		// 文字コードの設定
 		req.setCharacterEncoding("utf-8");
 
-		// user_idの取得
-		HttpSession session = req.getSession();
-		String user_id = (String) session.getAttribute("user_id");
+		String user_id = req.getParameter("user_id");
 
 		try {
 			// 入力された値を取得
@@ -44,18 +41,21 @@ public class RegistStudent extends HttpServlet {
 			// 入力された値を確認
 			if (date == null || date.length() < 1) {
 				req.setAttribute("message", "登録日を入力してください");
+				req.setAttribute("user_id", user_id);
 				RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/insertStudent.jsp");
 				rd.forward(req, resp);
 				return;
 			}
 			if (name == null || name.length() < 1) {
 				req.setAttribute("message", "名前を入力してください");
+				req.setAttribute("user_id", user_id);
 				RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/insertStudent.jsp");
 				rd.forward(req, resp);
 				return;
 			}
 			if (ruby == null || ruby.length() < 1) {
 				req.setAttribute("message", "ふりがなを入力してください");
+				req.setAttribute("user_id", user_id);
 				RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/insertStudent.jsp");
 				rd.forward(req, resp);
 				return;
@@ -93,11 +93,13 @@ public class RegistStudent extends HttpServlet {
 
 			// welcome.jspに画面遷移
 			req.setAttribute("message", "登録が完了しました");
+			req.setAttribute("user_id", user_id);
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/welcome.jsp");
 			rd.forward(req, resp);
 		} catch (Exception e) {
 			// welcome.jspに画面遷移
 			req.setAttribute("message", "エラーが発生しました");
+			req.setAttribute("user_id", user_id);
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/welcome.jsp");
 			rd.forward(req, resp);
 		}

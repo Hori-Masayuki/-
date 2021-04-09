@@ -78,6 +78,7 @@
 			</table>
 
 			<form action="deleteResult" method="POST">
+				<input type="hidden" name="user_id" value="${user_id}">
 				<input type="hidden" name="result_id" value="${result.id}">
 				<input type="submit" value="削除" class="updateResult-submit">
 			</form>

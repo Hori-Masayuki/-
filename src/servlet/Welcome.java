@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import bean.DataAccess;
 
@@ -27,16 +26,13 @@ public class Welcome extends HttpServlet {
 		String name = req.getParameter("name");
 		String password = req.getParameter("password");
 
-		// sessionを取得
-		HttpSession session = req.getSession();
-
 		// DataAccessのインスタンスを生成
 		DataAccess da = new DataAccess();
 
 		// userCheckメソッドを実行し、画面遷移
 		try {
 			if (da.userCheck(name, password)) {
-				session.setAttribute("user_id", da.getUser_id());
+				req.setAttribute("user_id", da.getUser_id());
 				req.setAttribute("message", "ようこそ" + name + "さん");
 				RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/welcome.jsp");
 				rd.forward(req, resp);
@@ -46,6 +42,7 @@ public class Welcome extends HttpServlet {
 				rd.forward(req, resp);
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 			req.setAttribute("message", "エラーが発生しました");
 			RequestDispatcher rd = req.getRequestDispatcher("/index.jsp");
 			rd.forward(req, resp);

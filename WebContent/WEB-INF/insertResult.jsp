@@ -12,6 +12,7 @@
 		<p>${message }</p>
 		<h1 class="insertResult-title">成績入力</h1>
 		<form action="registResult" method="POST">
+			<input type="hidden" name="user_id" value="${user_id }">
 
 			<div class="insertResult-student">
 				<p class="insertResult-text">生徒名</p>

@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import bean.DataAccess;
 import bean.Result;
@@ -23,9 +22,7 @@ public class RegistResult extends HttpServlet {
 
 		// 文字コードの設定
 		req.setCharacterEncoding("utf-8");
-		// user_idの取得
-		HttpSession session = req.getSession();
-		String user_id = (String) session.getAttribute("user_id");
+		String user_id = req.getParameter("user_id");
 
 		try {
 			// 入力された値を取得
@@ -45,6 +42,7 @@ public class RegistResult extends HttpServlet {
 
 			// 入力された値を確認
 			if (test_date == null || test_date.length() < 1 || test_name == null || test_name.length() < 1) {
+				req.setAttribute("user_id", user_id);
 				req.setAttribute("message", "テスト日、テスト名を入力してください");
 				// user_idからstudentListを取得
 				DataAccess da = new DataAccess();
@@ -106,10 +104,12 @@ public class RegistResult extends HttpServlet {
 			da.insertResult(result);
 
 			// welcome.jspに画面遷移
+			req.setAttribute("user_id", user_id);
 			req.setAttribute("message", "登録完了しました");
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/welcome.jsp");
 			rd.forward(req, resp);
 		} catch (Exception e) {
+			req.setAttribute("user_id", user_id);
 			req.setAttribute("message", "エラーが発生しました");
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/welcome.jsp");
 			rd.forward(req, resp);

@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import bean.DataAccess;
 import bean.Student;
@@ -24,8 +23,7 @@ public class InsertResult extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 
 		// user_idの取得
-		HttpSession session = req.getSession();
-		String user_id = (String) session.getAttribute("use_id");
+		String user_id = req.getParameter("user_id");
 
 		// DataAccessオブジェクトを生成
 		DataAccess da = new DataAccess();
@@ -36,10 +34,12 @@ public class InsertResult extends HttpServlet {
 			ArrayList<Student> studentList = da.selectAllStudents(user_id);
 
 			// insertResult.jspに画面遷移
+			req.setAttribute("user_id", user_id);
 			req.setAttribute("studentList", studentList);
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/insertResult.jsp");
 			rd.forward(req, resp);
 		} catch (Exception e) {
+			req.setAttribute("user_id", user_id);
 			req.setAttribute("message", "エラーが発生しました");
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/welcome.jsp");
 			rd.forward(req, resp);
