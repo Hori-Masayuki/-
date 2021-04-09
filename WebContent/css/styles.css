@@ -1,0 +1,424 @@
+@charset "utf-8";
+
+/* ここから全体 */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #f2f2f2;
+}
+/* ここまで全体 */
+
+/* ここからindex.jsp */
+.index-body {
+	width: 400px;
+	margin-top: 120px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.index-signIn {
+	color: #2fe5ab;
+}
+
+.index-signIn-screen {
+	background: #fff;
+}
+
+.index-text {
+	text-align: left;
+	padding-left: 10%;
+}
+
+.index-input {
+	width: 80%;
+	margin-bottom: 12px;
+	margin-top: 12px;
+	height: 24px;
+}
+
+.index-btn {
+	width: 80%;
+	font-weight: bold;
+	background: #2fe5ab;
+	color: #fff;
+	border: none;
+	height: 36px;
+	margin: 24px;
+}
+
+.index-signUp {
+	color: #2fe5ab;
+	text-decoration: none;
+}
+/* ここまでindex.jsp */
+
+/* ここからregist.jsp */
+.regist-body {
+	width: 400px;
+	margin-top: 120px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.regist-signUp {
+	color: #2fe5ab;
+}
+
+.regist-signUp-screen {
+	background: #fff;
+}
+
+.regist-text {
+	text-align: left;
+	padding-left: 10%;
+}
+
+.regist-input {
+	width: 80%;
+	margin-bottom: 12px;
+	margin-top: 12px;
+	height: 24px;
+}
+
+.regist-btn {
+	width: 80%;
+	font-weight: bold;
+	background: #2fe5ab;
+	color: #fff;
+	border: none;
+	height: 36px;
+	margin: 24px;
+}
+
+.regist-signIn {
+	color: #2fe5ab;
+	text-decoration: none;
+}
+
+/* ここまでregist.jsp */
+
+/* ここからwelcome.jsp */
+.welcome-body {
+	width: 400px;
+	margin-top: 120px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background: #fff;
+}
+
+.welcome-link {
+	background: #2fe5ab;
+	border: none;
+	height: 48px;
+	color: #fff;
+	font-weight: bold;
+	margin: 24px;
+	width: 80%;
+	border-radius: 5px;
+}
+
+/* ここまでwelcome.jsp */
+
+/* ここからinsertStudent.jsp */
+.insertStudent-body {
+	width: 600px;
+	margin-top: 120px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background: #fff;
+}
+
+.insertStudent-title {
+	color: #2fe5ab;
+}
+
+.insertStudent-date, .insertStudent-name, .insertStudent-ruby,
+	.insertStudent-birthday, .insertStudent-sex, .insertStudent-zipAddress,
+	.insertStudent-tel, .insertStudent-email, .insertStudent-school,
+	.insertStudent-grade {
+	display: flex;
+}
+
+.insertStudent-text {
+	width: 15%;
+	background: #2fe5ab;
+	border-radius: 5px;
+	margin: 1px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	font-weight: bold;
+}
+
+.insertStudent-input {
+	width: 80%;
+	margin-bottom: 12px;
+	margin-top: 12px;
+	height: 24px;
+}
+
+.insertStudent-inInput {
+	width: 480px;
+	margin-bottom: 12px;
+	margin-top: 12px;
+	height: 24px;
+}
+
+.insertStudent-submit {
+	text-align: center;
+	width: 150px;
+	height: 40px;
+}
+
+/* ここまでinsertStudent.jsp */
+
+/* ここからselectStudent.jsp */
+.selectStudent-body {
+	width: 400px;
+	margin-top: 120px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 60px;
+	text-align: center;
+	background: #fff;
+	text-align: center;
+}
+
+.selectStudent-title {
+	color: #2fe5ab;
+}
+
+.selectStudent-submit {
+	width: 80%;
+	font-weight: bold;
+	background: #2fe5ab;
+	color: #fff;
+	border: none;
+	height: 36px;
+	margin: 1px;
+}
+
+/* ここまでselectStudent.jsp */
+
+/* ここからupdateStudent.jsp */
+.updateStudent-body {
+	margin-top: 120px;
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background: #fff;
+}
+
+.updateStudent-title {
+	color: #2fe5ab;
+}
+
+.updateStudent-date, .updateStudent-name, .updateStudent-ruby,
+	.updateStudent-birthday, .updateStudent-sex, .updateStudent-zipAddress,
+	.updateStudent-tel, .updateStudent-email, .updateStudent-school,
+	.updateStudent-grade {
+	display: flex;
+}
+
+.updateStudent-text {
+	width: 15%;
+	background: #2fe5ab;
+	border-radius: 5px;
+	margin: 1px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	font-weight: bold;
+}
+
+.updateStudent-input {
+	width: 80%;
+	margin-bottom: 12px;
+	margin-top: 12px;
+	height: 24px;
+}
+
+.updateStudent-inInput {
+	width: 480px;
+	margin-bottom: 12px;
+	margin-top: 12px;
+	height: 24px;
+}
+
+.updateStudent-submit {
+	text-align: center;
+	width: 150px;
+	height: 40px;
+	margin: 2px;
+}
+
+/* ここまでupdateStudent.jsp */
+
+/* ここからinsertResult.jsp */
+.insertResult-body {
+	width: 600px;
+	margin-top: 60px;;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background: #fff;
+	padding-bottom: 30px;
+}
+
+.insertResult-title {
+	color: #2fe5ab;
+}
+
+.insertResult-student, .insertResult-semester, .insertResult-test_date,
+	.insertResult-test_name {
+	display: flex;
+}
+
+.insertResult-input {
+	width: 80%;
+	margin-bottom: 12px;
+	margin-top: 12px;
+	height: 24px;
+}
+
+.insertResult-text {
+	width: 15%;
+	background: #2fe5ab;
+	border-radius: 5px;
+	margin: 1px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	font-weight: bold;
+}
+
+.insertResult-th {
+	background: #2fe5ab;
+	border-radius: 5px;
+	color: #fff;
+	font-weight: bold;
+}
+
+.insertResult-inputNum {
+	width: 110px;
+	height: 24px;
+}
+
+.insertResult-submit {
+	text-align: center;
+	width: 150px;
+	height: 40px;
+	margin: 2px;
+	margin-top: 15px;
+}
+
+/* ここまでinsertResult.jsp */
+
+/* ここからselectResult.jsp */
+.selectResult-body {
+	width: 400px;
+	margin-top: 120px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 60px;
+	text-align: center;
+	background: #fff;
+	text-align: center;
+}
+
+.selectResult-title {
+	color: #2fe5ab;
+}
+
+.selectResult-submit {
+	width: 80%;
+	font-weight: bold;
+	background: #2fe5ab;
+	color: #fff;
+	border: none;
+	height: 36px;
+	margin: 1px;
+}
+
+/* ここまでselectResult.jsp */
+
+/* ここからupdateResult.jsp */
+
+.updateResult-name{
+	width: 600px;
+	margin-top: 60px;;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	text-align: center;
+	background: #fff;
+}
+
+.updateResult-body{
+	width: 600px;
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background: #fff;
+}
+
+.updateResult-name,
+.updateResult-semester,
+.updateResult-test_date,
+.updateResult-test_name{
+	display: flex;
+}
+
+.updateResult-text{
+	width: 15%;
+	background: #2fe5ab;
+	border-radius: 5px;
+	margin: 1px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	font-weight: bold;
+}
+
+.updateResult-value{
+	width: 80%;
+	margin-bottom: 12px;
+	margin-top: 12px;
+	height: 24px;
+}
+
+.updateResult-th{
+	background: #2fe5ab;
+	border-radius: 5px;
+	color: #fff;
+	font-weight: bold;
+	width: 90px;
+}
+
+.updateResult-inputNum{
+	width: 90px;
+	height: 24px;
+}
+
+.updateResult-submit{
+	text-align: center;
+	width: 150px;
+	height: 40px;
+	margin: 2px;
+	margin-top: 15px;
+}
+
+/* ここまでupdateResult.jsp */
