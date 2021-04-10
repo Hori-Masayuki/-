@@ -14,7 +14,7 @@
 				<p class="index-text">ユーザー名</p>
 				<input type="text" name="name" class="index-input">
 				<p class="index-text">パスワード</p>
-				<input type="password" name="password" class="index-input"><br>
+				<input type="password" name="password" class="index-input">
 				<input type="submit" value="サインイン" class="index-btn">
 			</form>
 		</div>
