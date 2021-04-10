@@ -14,7 +14,7 @@
 			<form action="updateStudent" method="POST">
 				<input type="hidden" name="user_id" value="${user_id }">
 				<input type="hidden" name="student_id" value="${student.id}">
-				<input type="submit" value="${student.grade}:${student.name}" class="selectStudent-submit">
+				<input type="submit" value="<c:out value="${student.grade}:${student.name}"/>" class="selectStudent-submit">
 			</form>
 		</c:forEach>
 	</div>

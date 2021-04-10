@@ -18,7 +18,7 @@
 				<p class="insertResult-text">生徒名</p>
 				<select name="student_id" class="insertResult-input">
 					<c:forEach var="student" items="${studentList }">
-						<option value="${student.id}">${student.grade}:${student.name}</option>
+						<option value="${student.id}"><c:out value="${student.grade}:${student.name}"></c:out></option>
 					</c:forEach>
 				</select>
 			</div>
