@@ -34,12 +34,12 @@
 
 			<div class="insertResult-test_date">
 				<p class="insertResult-text">テスト日</p>
-				<input type="date" name="test_date" class="insertResult-input">
+				<input type="date" name="test_date" class="insertResult-input" placeholder="2020/04/01">
 			</div>
 
 			<div class="insertResult-test_name">
 				<p class="insertResult-text">テスト名</p>
-				<input type="text" name="test_name" class="insertResult-input">
+				<input type="text" name="test_name" class="insertResult-input" placeholder="実力テスト">
 			</div>
 
 			<table>

@@ -41,8 +41,8 @@ public class Regist extends HttpServlet {
 				rd.forward(req, resp);
 				return;
 			}
-			if (password == null || password.length() < 1) {
-				req.setAttribute("message", "パスワードを入力してください");
+			if (password == null || password.length() < 8) {
+				req.setAttribute("message", "8文字以上のパスワードを入力してください");
 				RequestDispatcher rd = req.getRequestDispatcher("/regist.jsp");
 				rd.forward(req, resp);
 				return;
