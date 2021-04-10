@@ -11,7 +11,7 @@
 
 	<div class="updateResult-name">
 		<p class="updateResult-text">生徒名</p>
-		<p class="updateResult-value">${student_name }</p>
+		<p class="updateResult-value"><c:out value="${student_name }"></c:out></p>
 	</div>
 
 	<c:forEach var="result" items="${resultList }">
@@ -20,17 +20,17 @@
 
 			<div class="updateResult-semester">
 				<p class="updateResult-text">セメスター</p>
-				<p class="updateResult-value">${result.semester }</p>
+				<p class="updateResult-value"><c:out value="${result.semester }"></c:out></p>
 			</div>
 
 			<div class="updateResult-test_date">
 				<p class="updateResult-text">テスト日</p>
-				<p class="updateResult-value">${result.test_date }</p>
+				<p class="updateResult-value"><c:out value="${result.test_date }"></c:out></p>
 			</div>
 
 			<div class="updateResult-test_name">
 				<p class="updateResult-text">テスト名</p>
-				<p class="updateResult-value">${result.test_name }</p>
+				<p class="updateResult-value"><c:out value="${result.test_name }"></c:out></p>
 			</div>
 
 			<table>

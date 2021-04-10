@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="insertResult-body">
-		<p>${message }</p>
+		<p><c:out value="${message }"></c:out></p>
 		<h1 class="insertResult-title">成績入力</h1>
 		<form action="registResult" method="POST">
 			<input type="hidden" name="user_id" value="${user_id }">

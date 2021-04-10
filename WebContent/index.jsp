@@ -1,13 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <title>生徒管理システム</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/styles.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/css/styles.css">
 </head>
 <body>
 	<div class="index-body">
-		<p>${message }</p>
+		<p>
+			<c:out value="${message }"></c:out>
+		</p>
 		<h1 class="index-signIn">サインイン</h1>
 		<div class="index-signIn-screen">
 			<form action="login" method="POST">

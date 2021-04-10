@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -9,7 +10,7 @@
 <body>
 	<div class="insertStudent-body">
 		<h1 class="insertStudent-title">新規生徒登録</h1>
-		<p>${message }</p>
+		<p><c:out value="${message }"></c:out></p>
 		<form action="registStudent" method="POST">
 			<input type="hidden" name="user_id" value="${user_id }">
 
