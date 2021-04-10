@@ -317,27 +317,33 @@ public class DataAccess {
 	}
 
 	// student_idからstudent情報を削除するメソッド
+	// もし成績データがある場合は消去する
 	public void deleteStudent(String student_id) throws SQLException {
 
 		// Connection,PreparedStatement,ResultSet型変数の宣言
 		Connection conn = null;
-		PreparedStatement ps = null;
+		PreparedStatement deleteStudentPs = null;
+		PreparedStatement deleteResultPs = null;
 
 		try {
 			// 生徒データ削除用のSQL文
-			String sql = "DELETE FROM student WHERE id=?;";
+			String studentSQL = "DELETE FROM student WHERE id=?;";
+			String resultSQL = "DELETE FROM result WHERE student_id=?;";
 
 			// Connectionオブジェクトの取得
 			conn = getDataSource().getConnection();
 
 			// PreparedStatementオブジェクトの取得
-			ps = conn.prepareStatement(sql);
+			deleteStudentPs = conn.prepareStatement(studentSQL);
+			deleteResultPs = conn.prepareStatement(resultSQL);
 
 			// パラメータ設定
-			ps.setInt(1, Integer.parseInt(student_id));
+			deleteStudentPs.setInt(1, Integer.parseInt(student_id));
+			deleteResultPs.setInt(1, Integer.parseInt(student_id));
 
 			// データ削除用のSQL文の実行
-			ps.executeUpdate();
+			deleteResultPs.execute();
+			deleteStudentPs.executeUpdate();
 
 		} catch (Exception e) {
 			throw new SQLException(e);
@@ -346,8 +352,11 @@ public class DataAccess {
 			if (conn != null) {
 				conn.close();
 			}
-			if (ps != null) {
-				ps.close();
+			if (deleteStudentPs != null) {
+				deleteStudentPs.close();
+			}
+			if (deleteResultPs != null) {
+				deleteResultPs.close();
 			}
 		}
 	}
