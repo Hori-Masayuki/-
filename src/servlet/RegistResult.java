@@ -30,15 +30,15 @@ public class RegistResult extends HttpServlet {
 			String semester = req.getParameter("semester");
 			String test_date = req.getParameter("test_date");
 			String test_name = req.getParameter("test_name");
-			Integer english = Integer.parseInt(req.getParameter("english"));
-			Integer math = Integer.parseInt(req.getParameter("math"));
-			Integer japanese = Integer.parseInt(req.getParameter("japanese"));
-			Integer science = Integer.parseInt(req.getParameter("science"));
-			Integer society = Integer.parseInt(req.getParameter("society"));
-			Integer music = Integer.parseInt(req.getParameter("music"));
-			Integer physical = Integer.parseInt(req.getParameter("physical"));
-			Integer tech_home = Integer.parseInt(req.getParameter("tech_home"));
-			Integer art = Integer.parseInt(req.getParameter("art"));
+			String english = req.getParameter("english");
+			String math = req.getParameter("math");
+			String japanese = req.getParameter("japanese");
+			String science = req.getParameter("science");
+			String society = req.getParameter("society");
+			String music = req.getParameter("music");
+			String physical = req.getParameter("physical");
+			String tech_home = req.getParameter("tech_home");
+			String art = req.getParameter("art");
 
 			// 入力された値を確認
 			if (test_date == null || test_date.length() < 1 || test_name == null || test_name.length() < 1) {
@@ -53,32 +53,32 @@ public class RegistResult extends HttpServlet {
 				return;
 			}
 			// 入力がない点数は0を代入
-			if (english == null || english < 1) {
-				english = 0;
+			if (english == null || english.length() < 1) {
+				english = "0";
 			}
-			if (math == null || math < 1) {
-				math = 0;
+			if (math == null || math.length() < 1) {
+				math = "0";
 			}
-			if (japanese == null || japanese < 1) {
-				japanese = 0;
+			if (japanese == null || japanese.length() < 1) {
+				japanese = "0";
 			}
-			if (science == null || science < 1) {
-				science = 0;
+			if (science == null || science.length() < 1) {
+				science = "0";
 			}
-			if (society == null || society < 1) {
-				society = 0;
+			if (society == null || society.length() < 1) {
+				society = "0";
 			}
-			if (music == null || music < 1) {
-				music = 0;
+			if (music == null || music.length() < 1) {
+				music = "0";
 			}
-			if (physical == null || physical < 1) {
-				physical = 0;
+			if (physical == null || physical.length() < 1) {
+				physical = "0";
 			}
-			if (tech_home == null || tech_home < 1) {
-				tech_home = 0;
+			if (tech_home == null || tech_home.length() < 1) {
+				tech_home = "0";
 			}
-			if (art == null || art < 1) {
-				art = 0;
+			if (art == null || art.length() < 1) {
+				art = "0";
 			}
 
 			// Resultオブジェクトを生成
@@ -87,15 +87,15 @@ public class RegistResult extends HttpServlet {
 			result.setSemester(semester);
 			result.setTest_date(test_date);
 			result.setTest_name(test_name);
-			result.setEnglish(english);
-			result.setMath(math);
-			result.setJapanese(japanese);
-			result.setScience(science);
-			result.setSociety(society);
-			result.setMusic(music);
-			result.setPhysical(physical);
-			result.setTech_home(tech_home);
-			result.setArt(art);
+			result.setEnglish(Integer.parseInt(english));
+			result.setMath(Integer.parseInt(math));
+			result.setJapanese(Integer.parseInt(japanese));
+			result.setScience(Integer.parseInt(science));
+			result.setSociety(Integer.parseInt(society));
+			result.setMusic(Integer.parseInt(music));
+			result.setPhysical(Integer.parseInt(physical));
+			result.setTech_home(Integer.parseInt(tech_home));
+			result.setArt(Integer.parseInt(art));
 
 			// DataAccessオブジェクトを生成
 			DataAccess da = new DataAccess();
